@@ -1,0 +1,325 @@
+/* === BASE === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #f4f8fb;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  padding: 30px;
+  color: #333;
+}
+
+/* === NAVBAR === */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #0a2850;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  position: relative;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(to right, #8c8f93, #ffffff);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+.logo-container {
+  position: relative;
+  display: inline-block;
+}
+
+.logo {
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.logo-container:hover .logo {
+  transform: scale(1.5);
+}
+
+.logo-tooltip {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%) translateX(10px);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 101;
+}
+
+.logo-container:hover .logo-tooltip {
+  opacity: 1;
+}
+
+/* === LOGIN === */
+.login-container {
+  width: 400px;
+  margin: 120px 0 60px 80px;
+  padding: 40px;
+  background-color: rgba(20, 60, 120, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+
+h1 {
+  margin-top: 8%;
+  text-align: center;
+  color: #174382;
+}
+
+/* === BUSQUEDA === */
+.input-busqueda {
+  border: 3px solid rgba(20, 60, 120, 0.9);
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  outline: none;
+}
+
+/* === TABLA === */
+table {
+  margin: 30px auto;
+  width: 99.3%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(23, 68, 130, 0.345);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 14px 18px;
+  text-align: left;
+}
+
+th {
+  background: linear-gradient(to right, #174382, #0d3a7a);
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+tr:nth-child(even) {
+  background: #f0f4fa;
+}
+
+/* === BOTONES === */
+.ver-estudiantes-btn,
+.eliminar-representante-btn,
+.btn-ver-detalle,
+.modal-detalle-estudiante__btn-subir,
+.modal-detalle-estudiante__btn-guardar,
+.modal-detalle-estudiante__btn-cerrar {
+  border: none;
+  border-radius: 5px;
+  padding: 7px 16px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.ver-estudiantes-btn,
+.eliminar-representante-btn {
+  background: #174382;
+  color: #fff;
+}
+
+.ver-estudiantes-btn:hover,
+.eliminar-representante-btn:hover {
+  background: #1a5bb8;
+}
+
+.btn-ver-detalle {
+  background: #4CAF50;
+  color: #fff;
+}
+
+.btn-ver-detalle:hover {
+  background: #45a049;
+}
+
+.modal-detalle-estudiante__btn-subir {
+  background: #2196F3;
+  color: #fff;
+}
+
+.modal-detalle-estudiante__btn-guardar {
+  background: #4CAF50;
+  color: #fff;
+  display: none;
+}
+
+.modal-detalle-estudiante__btn-cerrar {
+  background: #f44336;
+  color: #fff;
+}
+
+/* === MODAL BASE === */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  animation: AbrirModal 0.3s ease-in-out;
+}
+
+.modal.mostrar {
+  display: flex;
+}
+
+/* === MODAL ESTUDIANTES === */
+.modal-estudiantes__content {
+  background: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 700px;
+  border-radius: 8px;
+  position: relative;
+  margin: 5% auto;
+}
+
+.modal-estudiantes__close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.modal-estudiantes__titulo {
+  color: #174382;
+  margin-top: 0;
+}
+
+.modal-estudiantes__lista {
+  list-style: none;
+  padding: 0;
+  margin-top: 18px;
+}
+
+.modal-estudiantes__lista li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* === MODAL DETALLE ESTUDIANTE === */
+.modal-detalle-estudiante__content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  position: relative;
+  margin: 5% auto;
+}
+
+.modal-detalle-estudiante__close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 2rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.modal-detalle-estudiante__foto-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modal-detalle-estudiante__foto {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #4CAF50;
+}
+
+.modal-detalle-estudiante__form {
+  margin-top: 10px;
+}
+
+.modal-detalle-estudiante__botones-foto {
+  margin-top: 10px;
+}
+
+.modal-detalle-estudiante__info {
+  margin-top: 20px;
+}
+
+.modal-detalle-estudiante__nombre {
+  color: #174382;
+  margin-bottom: 10px;
+}
+
+.modal-detalle-estudiante__acciones {
+  text-align: right;
+  margin-top: 20px;
+}
+
+/* === ANIMACIONES === */
+@keyframes AbrirModal {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

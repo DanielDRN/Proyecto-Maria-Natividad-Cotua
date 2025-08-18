@@ -1,0 +1,30 @@
+<div class="modal modal-detalle-estudiante" id="modalDetalleEstudiante" style="display:none;" aria-hidden="true">
+    <div class="modal-detalle-estudiante__content">
+        <span class="modal-detalle-estudiante__close" onclick="ModalManager.cerrarModal('modalDetalleEstudiante')">&times;</span>
+
+        <div class="modal-detalle-estudiante__foto-container">
+            <img id="detalleFotoEstudiante" alt="Foto del estudiante" class="modal-detalle-estudiante__foto">
+
+            <form id="formSubirFoto" enctype="multipart/form-data" class="modal-detalle-estudiante__form">
+                <input type="file" id="inputFoto" name="foto" accept="image/*" style="display:none;">
+                <input type="hidden" id="estudianteId" name="estudiante_id">
+                <div class="modal-detalle-estudiante__botones-foto">
+                    <button type="button" class="modal-detalle-estudiante__btn-subir" onclick="document.getElementById('inputFoto').click()">
+                        Cambiar Foto
+                    </button>
+                    <button type="submit" class="modal-detalle-estudiante__btn-guardar">Guardar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="modal-detalle-estudiante__info">
+            <h2 id="detalleNombreEstudiante" class="modal-detalle-estudiante__nombre">Nombre Apellido</h2>
+            <p><strong>Grado:</strong> <span id="detalleGrado">--</span></p>
+            <p><strong>Cédula:</strong> <span id="detalleCedula">--</span></p>
+        </div>
+
+        <div class="modal-detalle-estudiante__acciones">
+            <button class="modal-detalle-estudiante__btn-cerrar" onclick="ModalManager.cerrarModal('modalDetalleEstudiante')">Cerrar</button>
+        </div>
+    </div>
+</div>
