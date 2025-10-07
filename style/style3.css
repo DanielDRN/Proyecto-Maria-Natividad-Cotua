@@ -1,0 +1,436 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #f4f8fb;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  padding: 30px;
+  color: #333;
+  padding-top: 80px;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #0a2850;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  position: relative;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(to right, #8c8f93, #ffffff);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+.logo-container {
+  position: relative;
+  display: inline-block;
+}
+
+.logo {
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.logo-container:hover .logo {
+  transform: scale(1.5);
+}
+
+.logo-tooltip {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%) translateX(10px);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 101;
+}
+
+.logo-container:hover .logo-tooltip {
+  opacity: 1;
+}
+
+h1 {
+  margin-top: 2%;
+  text-align: center;
+  color: #174382;
+}
+
+.input-busqueda {
+  border: 3px solid rgba(20, 60, 120, 0.9);
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  color: #000;
+  display: block;
+  margin: 30px auto;
+  outline: none;
+  width: 300px;
+}
+
+table {
+  margin: 30px auto;
+  width: 99.3%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(23, 68, 130, 0.345);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 14px 18px;
+  text-align: left;
+}
+
+th {
+  background: linear-gradient(to right, #174382, #0d3a7a);
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+tr:nth-child(even) {
+  background: #f0f4fa;
+}
+
+.ver-estudiantes-btn,
+.eliminar-representante-btn,
+.editar-btn,
+.btn-ver-detalle {
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 2px;
+}
+
+.ver-estudiantes-btn {
+  background: #174382;
+  color: #fff;
+}
+
+.ver-estudiantes-btn:hover {
+  background: #1a5bb8;
+}
+
+.editar-btn {
+  background: #28a745;
+  color: #fff;
+}
+
+.editar-btn:hover {
+  background: #218838;
+}
+
+.eliminar-representante-btn {
+  background: #dc3545;
+  color: #fff;
+}
+
+.eliminar-representante-btn:hover {
+  background: #c82333;
+}
+
+.btn-ver-detalle {
+  background: #4CAF50;
+  color: #fff;
+}
+
+.btn-ver-detalle:hover {
+  background: #45a049;
+}
+
+/* ESTILOS UNIFICADOS PARA TODOS LOS MODALES */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  padding: 0;
+  border: 1px solid #888;
+  margin-top: 50px3;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(23, 68, 130, 0.345);
+  position: relative;
+  animation: slideIn 0.3s ease-in-out;
+}
+
+.modal-content h2 {
+  background-color: #174382;
+  color: #fff;
+  padding: 15px;
+  margin: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+}
+
+.modal-close {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 2001;
+}
+
+.modal-close:hover {
+  color: #fff;
+}
+
+/* Formulario de editar */
+#editarForm {
+  padding: 20px;
+}
+
+#editarForm label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+#editarForm input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+  font-size: 16px;
+}
+
+#editarForm input:focus {
+  border-color: #174382;
+  outline: none;
+}
+
+#editarForm button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #174382;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+#editarForm button[type="submit"]:hover {
+  background-color: #1a5bb8;
+}
+
+/* Modales específicos - Estudiantes y Detalles */
+.modal-estudiantes__content,
+.modal-detalles__content {
+  background: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 700px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.modal-estudiantes__close,
+.modal-detalles__close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.modal-estudiantes__close:hover,
+.modal-detalles__close:hover {
+  color: #000;
+}
+
+.modal-estudiantes__titulo,
+.modal-detalles__titulo {
+  color: #174382;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.modal-estudiantes__lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modal-estudiantes__item {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.modal-detalles__foto {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #3b82f6;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+.modal-detalles__btn-guardar {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.modal-detalles__btn-guardar:hover {
+  background-color: #2563eb;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+    padding-top: 70px;
+  }
+  
+  .modal-content,
+  .modal-estudiantes__content,
+  .modal-detalles__content {
+    width: 95%;
+    margin: 10% auto;
+    padding: 15px;
+  }
+  
+  table {
+    width: 100%;
+    font-size: 14px;
+  }
+  
+  th, td {
+    padding: 10px;
+  }
+  
+  .modal-detalles__foto {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+.ver-detalles-estudiante-btn{
+  background: #174382;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 15px 0 0 0;
+}
+
+.modal-detalles__input-foto {
+  background: #174382;
+  margin: 10px 0 10px 0;
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+.modal-detalles__label-foto {
+  background: #218838;
+  margin: 10px 0 5px 10px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #FFF;
+}
+
+.modal-estudiantes, .modal-detalles {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
